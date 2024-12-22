@@ -34,36 +34,41 @@ function show($query)
 }
 
 // Add data function
-function addData($data, $table)
+function addData($data, $table, $url)
 {
+    // Mendapatkan koneksi database
     $conn = getDBConnection();
     $fields = [];
     $values = [];
 
+    // Menyusun field dan value untuk query
     foreach ($data as $key => $value) {
+        // Menghindari field yang tidak diperlukan
         if (!in_array($key, ['submit', 'id', 'submitBuku', 'submitPenerbit'])) {
             $fields[] = $key;
             $values[] = "'" . $conn->real_escape_string($value) . "'";
         }
     }
 
+    // Menyusun query SQL untuk menambahkan data
     $sql = "INSERT INTO $table (" . implode(", ", $fields) . ") VALUES (" . implode(", ", $values) . ")";
 
+    // Mengeksekusi query
     if ($conn->query($sql) === TRUE) {
         echo '<script>
             alert("Data Berhasil Ditambahkan");
-            location.href = "dashboard.php";  // Redirect to dashboard
+            location.href = "' . $url . '";  // Redirect ke URL yang diberikan
         </script>';
     } else {
         echo '<script>
             alert("Data Gagal Ditambahkan");
-            location.href = "addBook.php";  // Redirect back to form
+            location.href = "' . $url . '";  // Redirect ke URL yang diberikan jika gagal
         </script>';
     }
 }
 
 // Edit data function
-function editData($data, $table)
+function editData($data, $table, $url)
 {
     $conn = getDBConnection();
     $setValues = [];
@@ -80,18 +85,18 @@ function editData($data, $table)
     if ($conn->query($sql) === TRUE) {
         echo '<script>
             alert("Data Berhasil Diperbarui");
-            location.href = "dashboard.php";  // Redirect to dashboard
+            location.href = "' . $url . '";  // Redirect to dashboard
         </script>';
     } else {
         echo '<script>
             alert("Data Gagal Diperbarui");
-            location.href = "editBook.php";  // Redirect back to edit form
+            location.href = "' . $url . '";  // Redirect back to edit form
         </script>';
     }
 }
 
 // Delete data function
-function deleteData($id, $table)
+function deleteData($id, $table, $url)
 {
     $conn = getDBConnection();
     $id = (int)$id;  // Ensure ID is an integer for security
@@ -100,12 +105,12 @@ function deleteData($id, $table)
     if ($conn->query($sql) === TRUE) {
         echo '<script>
             alert("Data Berhasil Dihapus");
-            location.href = "dashboard.php";  // Redirect to dashboard after delete
+            location.href = "' . $url . '";  // Redirect to dashboard after delete
         </script>';
     } else {
         echo '<script>
             alert("Data Gagal Dihapus");
-            location.href = "dashboard.php";  // Redirect back to dashboard if deletion fails
+            location.href = "' . $url . '";  // Redirect back to dashboard if deletion fails
         </script>';
     }
 }

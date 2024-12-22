@@ -10,17 +10,17 @@ if (isset($_POST['submitBuku'])) {
 
     if ($id) {
         // Update book data if ID is provided
-        editData($_POST, 'buku');
+        editData($_POST, 'buku','http://localhost:90/UNIBOOKSTORE/index.php?page=admin&menu=buku');
     } else {
         // Add new book if no ID is provided
-        addData($_POST, 'buku');
+        addData($_POST, 'buku','http://localhost:90/UNIBOOKSTORE/index.php?page=admin&menu=buku');
     }
 }
 
 // Handle delete request
 if (isset($_GET['action']) && $_GET['action'] == 'deleteBuku' && !empty($_GET['id'])) {
     $id = intval($_GET['id']); // Ensure ID is an integer for security
-    deleteData($id, 'buku'); // Call function to delete data
+    deleteData($id, 'buku', 'http://localhost:90/UNIBOOKSTORE/index.php?page=admin&menu=buku'); // Call function to delete data
 }
 
 // Fetch book and publisher data
