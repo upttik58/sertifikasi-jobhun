@@ -21,5 +21,3 @@ $baseUrl = "http://localhost:90/UNIBOOKSTORE/index.php?page=admin";
     include($page);
     ?>
 </div>
-
-<?php include('components/footer.php'); ?>
