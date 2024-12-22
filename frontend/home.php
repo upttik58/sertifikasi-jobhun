@@ -72,5 +72,3 @@ if ($searchQuery) {
         </div>
     </section>
 </main>
-
-<?php include('components/footer.php') ?>
