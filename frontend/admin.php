@@ -3,7 +3,7 @@ include('components/header.php');
 include('backend/functions.php');
 
 // Define base URL to avoid hardcoding
-$baseUrl = "http://localhost:90/UNIBOOKSTORE/index.php?page=admin";
+$baseUrl = $_SERVER['SCRIPT_NAME']."?page=admin";
 ?>
 
 <div class="container">

@@ -1,19 +1,20 @@
 <?php
+$baseurl = $_SERVER['SCRIPT_NAME'];
 // Process form for adding or editing publisher data
 if (isset($_POST['submitPenerbit'])) {
     if ($id) {
         // Edit data if ID is provided
-        editData($_POST, 'penerbit','http://localhost:90/UNIBOOKSTORE/index.php?page=admin&menu=buku');
+        editData($_POST, 'penerbit', $baseurl . '?page=admin&menu=penerbit');
     } else {
         // Add new data if no ID
-        addData($_POST, 'penerbit','http://localhost:90/UNIBOOKSTORE/index.php?page=admin&menu=buku');
+        addData($_POST, 'penerbit', $baseurl . '?page=admin&menu=penerbit');
     }
 }
 
 // Delete request processing
 if (isset($_GET['action']) && $_GET['action'] == 'deletePenerbit' && !empty($_GET['id'])) {
     $id = intval($_GET['id']); // Ensure ID is an integer for security
-    deleteData($id, 'penerbit', 'http://localhost:90/UNIBOOKSTORE/index.php?page=admin&menu=buku'); // Call function to delete data
+    deleteData($id, 'penerbit', $baseurl . '?page=admin&menu=penerbit'); // Call function to delete data
 }
 
 // Fetch all publishers data
