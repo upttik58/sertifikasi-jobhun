@@ -3,11 +3,6 @@ $baseurl = $_SERVER['SCRIPT_NAME'];
 // Handle form submission for adding/editing books
 if (isset($_POST['submitBuku'])) {
     $id = !empty($_POST['id']) ? intval($_POST['id']) : null;
-    $nama_buku = htmlspecialchars($_POST['nama_buku']);
-    $kategori = htmlspecialchars($_POST['kategori']);
-    $harga = floatval($_POST['harga']);
-    $stok = intval($_POST['stok']);
-    $penerbit = htmlspecialchars($_POST['penerbit']);
 
     if ($id) {
         // Update book data if ID is provided

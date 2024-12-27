@@ -2,6 +2,7 @@
 $baseurl = $_SERVER['SCRIPT_NAME'];
 // Process form for adding or editing publisher data
 if (isset($_POST['submitPenerbit'])) {
+    $id = !empty($_POST['id']) ? intval($_POST['id']) : null;
     if ($id) {
         // Edit data if ID is provided
         editData($_POST, 'penerbit', $baseurl . '?page=admin&menu=penerbit');
